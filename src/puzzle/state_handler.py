@@ -20,8 +20,6 @@ class StateHandler:
         for child, dir in children:
             if child is not None:
                 new_children.append((int(child), dir))
-            else:
-                new_children.append((-1, '-'))
         return new_children
     
     def go_up(self, state:str):
