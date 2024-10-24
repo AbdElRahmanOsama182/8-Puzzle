@@ -1,5 +1,5 @@
 from search_algorithm import SearchAlgorithm
-from state_handler import StateHandler
+from puzzle.state_handler import StateHandler
 
 class AStar(SearchAlgorithm):
     def __init__(self, heuristics):

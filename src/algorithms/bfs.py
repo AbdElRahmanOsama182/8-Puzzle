@@ -14,11 +14,9 @@ class BFS(SearchAlgorithm):
         while frontier:
             state=frontier.popleft()
             state_str = self.state_handler.convert_state_to_string(state)
+            
             if self.is_goal(state_str):
                 return True
-            
-            if not self.is_solvable(state_str):
-                return False
             
             # check children
             for child in self.state_handler.get_children():

@@ -1,4 +1,7 @@
 class StateHandler:
+    def is_solvable(self,state:str):
+        pass
+    
     def convert_state_to_string(self, state:int):
         state_str= str(state)
         if len(state_str) == 8:

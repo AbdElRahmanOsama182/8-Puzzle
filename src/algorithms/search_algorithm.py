@@ -1,4 +1,4 @@
-from state_handler import StateHandler
+from puzzle.state_handler import StateHandler
 class SearchAlgorithm:
     def __init__(self):
         self.GOAL_STATE= "012345678"
@@ -9,9 +9,6 @@ class SearchAlgorithm:
 
     def is_goal(self,state:str):
         return state==self.GOAL_STATE
-
-    def is_solvable(self,state:str):
-        pass
     
     def get_path_to_goal(self):
         pass
