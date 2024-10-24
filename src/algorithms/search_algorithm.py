@@ -31,7 +31,7 @@ class SearchAlgorithm:
         return self.states_to_goal
 
     def get_cost_to_goal(self):
-        return len(self.path_to_goal)-1
+        return len(self.path_to_goal)
 
     def get_number_of_nodes_expanded(self):
         return self.number_of_nodes_expanded
