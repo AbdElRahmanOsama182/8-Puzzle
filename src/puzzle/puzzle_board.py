@@ -17,9 +17,8 @@ class PuzzleBoard:
         self.state_handler = StateHandler()
 
     def solve(self):
-        state_str=self.state_handler.convert_state_to_string(self.state)
         start_time = time.time()
-        if self.state_handler.is_solvable(state_str):
+        if self.state_handler.is_solvable(self.state):
             success = self.algorithm.search(self.state)
         else:
             success = False

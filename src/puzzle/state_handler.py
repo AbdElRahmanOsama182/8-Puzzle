@@ -1,5 +1,5 @@
 class StateHandler:
-    def is_solvable(self,state:str):
+    def is_solvable(self,state:int):
         # TODO: implement is_solvable
         return True
 
