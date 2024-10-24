@@ -1,7 +1,10 @@
 from algorithms.search_algorithm import SearchAlgorithm
 from algorithms.algorithms_factory import AlgorithmsFactory
 from heuristics.heuristics_factory import HeuristicsFactory
-from state_handler import StateHandler
+from puzzle.state_handler import StateHandler
+from puzzle.search_result import SearchResult
+import time
+
 class PuzzleBoard:
     def __init__(self, state:int, algorithm_name:str, heuristic_name:str=None):
         self.state=state
@@ -15,10 +18,17 @@ class PuzzleBoard:
 
     def solve(self):
         state_str=self.state_handler.convert_state_to_string(self.state)
+        start_time = time.time()
         if self.state_handler.is_solvable(state_str):
             success = self.algorithm.search(self.state)
         else:
             success = False
-        # We would want to get number of nodes expanded & path to goal
+        # We would want to get number of nodes expanded & path and states to goal &
         # & search depth & path to goal cost from algorithm class
         # and we should get the runtime duration for this function
+        return SearchResult(success, time.time()-start_time, 
+                            self.algorithm.get_number_of_nodes_expanded(),
+                            self.algorithm.get_search_depth(),
+                            self.algorithm.get_path_to_goal(),
+                            self.algorithm.get_cost_to_goal(),
+                            self.algorithm.get_states_to_goal())

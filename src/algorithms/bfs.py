@@ -1,4 +1,4 @@
-from search_algorithm import SearchAlgorithm
+from algorithms.search_algorithm import SearchAlgorithm
 from collections import deque
 
 class BFS(SearchAlgorithm):
@@ -10,19 +10,32 @@ class BFS(SearchAlgorithm):
         frontier.append(state) # initial state
         visited = {}
         visited[state]=True
+        parent = {}
+        parent[state] = -1
 
+        self.search_depth = 0
+        self.number_of_nodes_expanded = 0
         while frontier:
-            state=frontier.popleft()
-            state_str = self.state_handler.convert_state_to_string(state)
-            
-            if self.is_goal(state_str):
-                return True
-            
-            # check children
-            for child in self.state_handler.get_children():
-              if not visited[child]:
-                  frontier.append(child)
-                  visited[child] = True
-
+            level_size = len(frontier)
+            for i in range(level_size):
+                state=frontier.popleft()
+                state_str = self.state_handler.convert_state_to_string(state)
+                
+                self.number_of_nodes_expanded += 1
+                
+                if self.is_goal(state_str):
+                    self.rebuild_path(parent)
+                    return True
+                
+                # check children
+                for child, dir in self.state_handler.get_children(state_str):
+                    if child == -1: # non-existent
+                        continue
+                    if not visited.get(child):
+                        frontier.append(child)
+                        parent[child] = (state, dir)
+                        visited[child] = True
+            self.search_depth += 1
+        self.search_depth -= 1 # root is at zero depth
         return False
             

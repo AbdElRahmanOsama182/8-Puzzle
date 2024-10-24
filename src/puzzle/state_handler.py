@@ -1,7 +1,8 @@
 class StateHandler:
     def is_solvable(self,state:str):
-        pass
-    
+        # TODO: implement is_solvable
+        return True
+
     def convert_state_to_string(self, state:int):
         state_str= str(state)
         if len(state_str) == 8:
@@ -11,13 +12,17 @@ class StateHandler:
     def get_children(self, state:str):
         children = []
         # we can store direction here
-        children.append(self.go_up(state))
-        children.append(self.go_down(state))
-        children.append(self.go_left(state))
-        children.append(self.go_right(state))
-        # remove None
-        children = [int(child) for child in children if child is not None]
-        return children
+        children.append( (self.go_up(state), 'U') )
+        children.append( (self.go_down(state), 'D') )
+        children.append( (self.go_left(state), 'L') )
+        children.append( (self.go_right(state), 'R') )
+        new_children = []
+        for child, dir in children:
+            if child is not None:
+                new_children.append((int(child), dir))
+            else:
+                new_children.append((-1, '-'))
+        return new_children
     
     def go_up(self, state:str):
         zero_pos = state.index('0')
