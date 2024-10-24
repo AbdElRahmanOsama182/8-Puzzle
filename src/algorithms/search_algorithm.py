@@ -15,7 +15,7 @@ class SearchAlgorithm:
         return state==self.GOAL_STATE
     
     def rebuild_path(self, parent:list):
-        curr = self.GOAL_STATE
+        curr = int(self.GOAL_STATE)
         while curr != -1:
             self.states_to_goal.append(curr) # the goal state
             self.path_to_goal.append(parent[curr][1]) # the direction
