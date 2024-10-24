@@ -1,4 +1,4 @@
-from search_algorithm import SearchAlgorithm
+from algorithms.search_algorithm import SearchAlgorithm
 
 class DFS(SearchAlgorithm):
     def __init__(self):

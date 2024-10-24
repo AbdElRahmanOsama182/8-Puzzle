@@ -1,7 +1,7 @@
-from dfs import DFS
-from bfs import BFS
-from iterative_dfs import IterativeDFS
-from a_star import AStar
+from algorithms.dfs import DFS
+from algorithms.bfs import BFS
+from algorithms.iterative_dfs import IterativeDFS
+from algorithms.a_star import AStar
 from heuristics.heuristic import Heuristic
 
 class AlgorithmsFactory:

@@ -1,6 +1,6 @@
-from heuristic import Heuristic
+from heuristics.heuristic import Heuristic
 
 class ManhattanDistance(Heuristic):
-    def heuristic(self, state):
+    def heuristic(self):
         # calculate the heuristic of the state
         pass
