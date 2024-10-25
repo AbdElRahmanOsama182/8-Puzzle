@@ -1,21 +1,22 @@
-from dfs import DFS
-from bfs import BFS
-from iterative_dfs import IterativeDFS
-from a_star import AStar
+from algorithms.bfs import BFS
+from algorithms.dfs import DFS
+from algorithms.iterative_dfs import IterativeDFS
+from algorithms.a_star import AStar
 from heuristics.heuristic import Heuristic
 
 class AlgorithmsFactory:
-    def get_algorithm(self, algorithm_name, heuristics:Heuristic = None):
+    def get_algorithm(self, algorithm_name, heuristic:Heuristic = None
+                      , goal_state="123456789"):
         if algorithm_name == "bfs":
-            return BFS()
+            return BFS(goal_state)
         elif algorithm_name == "dfs":
-            return DFS()
+            return DFS(goal_state)
         elif algorithm_name == "iterative_dfs":
-            return IterativeDFS()
+            return IterativeDFS(goal_state)
         elif algorithm_name == "a_star":
-            return AStar(heuristics=heuristics)
+            return AStar(goal_state=goal_state,heuristic=heuristic)
         else:
             # let default be BFS
-            return BFS()
+            return BFS(goal_state)
             
 
