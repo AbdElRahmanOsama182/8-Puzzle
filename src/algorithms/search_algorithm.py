@@ -8,7 +8,7 @@ class SearchAlgorithm:
         self.path_to_goal = [] # list of U, D, L, R characters representing directions
         self.states_to_goal = [] # list of integers representing states
 
-    def search(self, state:int):
+    def search(self, state:str, goal_state:str="123456789"):
         pass
 
     def is_goal(self,state:str):
