@@ -1,6 +1,6 @@
 from puzzle.state_handler import StateHandler
 class SearchAlgorithm:
-    def __init__(self, goal_state:str="012345678"):
+    def __init__(self, goal_state:str="123456789"):
         self.goal_state= goal_state
         self.state_handler=StateHandler(goal_state)
         self.number_of_nodes_expanded = 0
@@ -8,7 +8,7 @@ class SearchAlgorithm:
         self.path_to_goal = [] # list of U, D, L, R characters representing directions
         self.states_to_goal = [] # list of integers representing states
 
-    def search(self, state:int):
+    def search(self, state:str):
         pass
 
     def is_goal(self,state:str):

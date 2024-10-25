@@ -2,10 +2,11 @@ from algorithms.search_algorithm import SearchAlgorithm
 from collections import deque
 
 class BFS(SearchAlgorithm):
-    def __init__(self, goal_state:str="012345678"):
+    def __init__(self, goal_state:str="123456789"):
         super().__init__(goal_state)
     
     def search(self, state):
+        state=int(state)
         frontier=deque()
         frontier.append(state) # initial state
         visited = {}
@@ -19,7 +20,7 @@ class BFS(SearchAlgorithm):
             level_size = len(frontier)
             for i in range(level_size):
                 state:int=frontier.popleft()
-                state_str = self.state_handler.convert_state_to_string(state)
+                state_str = str(state)
 
                 self.number_of_nodes_expanded += 1
                
