@@ -16,11 +16,11 @@ class SearchAlgorithm:
     
     def rebuild_path(self, parent:list):
         curr = int(self.GOAL_STATE)
-        while curr != -1:
+        while parent[curr] != -1:
             self.states_to_goal.append(curr) # the goal state
             self.path_to_goal.append(parent[curr][1]) # the direction
             curr = parent[curr][0]
-
+        self.states_to_goal.append(curr)
         self.path_to_goal.reverse()
         self.states_to_goal.reverse()
 

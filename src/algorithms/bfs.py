@@ -26,12 +26,8 @@ class BFS(SearchAlgorithm):
                 if self.is_goal(state_str):
                     self.rebuild_path(parent)
                     return True
-                
-                # check children
                 for child, dir in self.state_handler.get_children(state_str):
-                    if child == -1: # non-existent
-                        continue
-                    if not visited.get(child):
+                    if not visited.get(child, False):
                         frontier.append(child)
                         parent[child] = (state, dir)
                         visited[child] = True
