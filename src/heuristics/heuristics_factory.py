@@ -1,5 +1,5 @@
-from euclidean_distance import EuclideanDistance
-from manhattan_distance import ManhattanDistance
+from heuristics.euclidean_distance import EuclideanDistance
+from heuristics.manhattan_distance import ManhattanDistance
 
 class HeuristicsFactory:
     def get_heuristics(self, heuristic_name):

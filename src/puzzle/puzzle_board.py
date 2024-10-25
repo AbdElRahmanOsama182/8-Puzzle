@@ -1,24 +1,35 @@
 from algorithms.search_algorithm import SearchAlgorithm
 from algorithms.algorithms_factory import AlgorithmsFactory
 from heuristics.heuristics_factory import HeuristicsFactory
-from state_handler import StateHandler
+from puzzle.state_handler import StateHandler
+from puzzle.search_result import SearchResult
+import time
+
 class PuzzleBoard:
-    def __init__(self, state:int, algorithm_name:str, heuristic_name:str=None):
+    def __init__(self, state:str, algorithm_name:str, heuristic_name:str=None
+                 , goal_state:str="123456789"):
         self.state=state
         heuristic = None
         algorithm_factory=AlgorithmsFactory()
         if heuristic_name is not None:
             heuristic_factory = HeuristicsFactory()
             heuristic=heuristic_factory.get_heuristics(heuristic_name)
-        self.algorithm = algorithm_factory.get_algorithm(algorithm_name, heuristic)
-        self.state_handler = StateHandler()
+        self.algorithm = algorithm_factory.get_algorithm(algorithm_name, heuristic, goal_state)
+        self.state_handler = StateHandler(goal_state)
+        self.state = self.state_handler.increment_state(state)
 
     def solve(self):
-        state_str=self.state_handler.convert_state_to_string(self.state)
-        if self.state_handler.is_solvable(state_str):
+        start_time = time.time()
+        if self.state_handler.is_solvable(self.state):
             success = self.algorithm.search(self.state)
         else:
             success = False
-        # We would want to get number of nodes expanded & path to goal
+        # We would want to get number of nodes expanded & path and states to goal &
         # & search depth & path to goal cost from algorithm class
         # and we should get the runtime duration for this function
+        return SearchResult(success, time.time()-start_time, 
+                            self.algorithm.get_number_of_nodes_expanded(),
+                            self.algorithm.get_search_depth(),
+                            self.algorithm.get_path_to_goal(),
+                            self.algorithm.get_cost_to_goal(),
+                            self.algorithm.get_states_to_goal())
