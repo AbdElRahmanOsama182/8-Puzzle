@@ -1,7 +1,11 @@
 class StateHandler:
+    def __init__(self, goal_state:str = "012345678"):
+        self.goal_state = goal_state
+
     def is_solvable(self,state:int):
-        # TODO: implement is_solvable
-        return True
+        x = self.count_inversions(self.convert_state_to_string(state)) % 2
+        y = self.count_inversions(self.goal_state) % 2
+        return x == y
 
     def convert_state_to_string(self, state:int):
         state_str= str(state)
@@ -54,3 +58,13 @@ class StateHandler:
         state_list = list(state)
         state_list[pos1], state_list[pos2] = state_list[pos2], state_list[pos1]
         return ''.join(state_list)
+    
+    def count_inversions(self, state:str):
+        inv_cnt = 0
+        for i in range(len(state)-1):
+            if state[i] == '0':
+                continue
+            for j in range(i+1,len(state)):
+                if state[j] != '0' and int(state[i])>int(state[j]):
+                    inv_cnt+=1
+        return inv_cnt

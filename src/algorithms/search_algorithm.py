@@ -1,8 +1,8 @@
 from puzzle.state_handler import StateHandler
 class SearchAlgorithm:
-    def __init__(self):
-        self.GOAL_STATE= "012345678"
-        self.state_handler=StateHandler()
+    def __init__(self, goal_state:str="012345678"):
+        self.goal_state= goal_state
+        self.state_handler=StateHandler(goal_state)
         self.number_of_nodes_expanded = 0
         self.search_depth = 0
         self.path_to_goal = [] # list of U, D, L, R characters representing directions
@@ -12,10 +12,10 @@ class SearchAlgorithm:
         pass
 
     def is_goal(self,state:str):
-        return state==self.GOAL_STATE
+        return state==self.goal_state
     
     def rebuild_path(self, parent:list):
-        curr = int(self.GOAL_STATE)
+        curr = int(self.goal_state)
         while parent[curr] != -1:
             self.states_to_goal.append(curr) # the goal state
             self.path_to_goal.append(parent[curr][1]) # the direction

@@ -2,8 +2,8 @@ from algorithms.search_algorithm import SearchAlgorithm
 from collections import deque
 
 class BFS(SearchAlgorithm):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, goal_state:str="012345678"):
+        super().__init__(goal_state)
     
     def search(self, state):
         frontier=deque()
@@ -18,14 +18,15 @@ class BFS(SearchAlgorithm):
         while frontier:
             level_size = len(frontier)
             for i in range(level_size):
-                state=frontier.popleft()
+                state:int=frontier.popleft()
                 state_str = self.state_handler.convert_state_to_string(state)
-                
+
                 self.number_of_nodes_expanded += 1
-                
+               
                 if self.is_goal(state_str):
                     self.rebuild_path(parent)
                     return True
+
                 for child, dir in self.state_handler.get_children(state_str):
                     if not visited.get(child, False):
                         frontier.append(child)

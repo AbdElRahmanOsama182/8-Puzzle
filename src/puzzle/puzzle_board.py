@@ -6,15 +6,16 @@ from puzzle.search_result import SearchResult
 import time
 
 class PuzzleBoard:
-    def __init__(self, state:int, algorithm_name:str, heuristic_name:str=None):
+    def __init__(self, state:int, algorithm_name:str, heuristic_name:str=None
+                 , goal_state:str="012345678"):
         self.state=state
         heuristic = None
         algorithm_factory=AlgorithmsFactory()
         if heuristic_name is not None:
             heuristic_factory = HeuristicsFactory()
             heuristic=heuristic_factory.get_heuristics(heuristic_name)
-        self.algorithm = algorithm_factory.get_algorithm(algorithm_name, heuristic)
-        self.state_handler = StateHandler()
+        self.algorithm = algorithm_factory.get_algorithm(algorithm_name, heuristic, goal_state)
+        self.state_handler = StateHandler(goal_state)
 
     def solve(self):
         start_time = time.time()
