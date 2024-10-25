@@ -6,7 +6,7 @@ from puzzle.search_result import SearchResult
 import time
 
 class PuzzleBoard:
-    def __init__(self, state:int, algorithm_name:str, heuristic_name:str=None):
+    def __init__(self, state:str, algorithm_name:str, heuristic_name:str=None):
         self.state=state
         heuristic = None
         algorithm_factory=AlgorithmsFactory()

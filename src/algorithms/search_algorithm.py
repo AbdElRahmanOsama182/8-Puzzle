@@ -8,14 +8,14 @@ class SearchAlgorithm:
         self.path_to_goal = [] # list of U, D, L, R characters representing directions
         self.states_to_goal = [] # list of integers representing states
 
-    def search(self, state:int):
+    def search(self, state:str, goal_state:str="123456789"):
         pass
 
     def is_goal(self,state:str):
         return state==self.GOAL_STATE
     
     def rebuild_path(self, parent:list):
-        curr = self.GOAL_STATE
+        curr = int(self.GOAL_STATE)
         while curr != -1:
             self.states_to_goal.append(curr) # the goal state
             self.path_to_goal.append(parent[curr][1]) # the direction
