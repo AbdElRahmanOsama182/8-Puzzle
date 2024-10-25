@@ -4,7 +4,7 @@ from collections import deque
 class DFS(SearchAlgorithm):
     def __init__(self, goal_state):
         super().__init__(goal_state)
-    def search(self, initial_state,max_depth = 10000):
+    def search(self, initial_state):#set it to infinity
         state = int(initial_state)
         frontier = deque()
         explored = set()
@@ -35,7 +35,6 @@ class DFS(SearchAlgorithm):
                     # new_cost = cost[state] + 1
                     # if child not in cost or new_cost < cost[child]:
                     #     cost[child] = new_cost
-                    if depth < max_depth:
-                        frontier.append((depth+1, child))
-                        parent[child] = (state, dir)          
+                    frontier.append((depth+1, child))
+                    parent[child] = (state, dir)          
         return False
