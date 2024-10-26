@@ -26,6 +26,7 @@ class IterativeDFS(SearchAlgorithm):
             while frontier:
                 # frontier_max_size = max(frontier_max_size, len(frontier))
                 cur_depth, state = frontier.pop()
+                self.number_of_nodes_expanded += 1
 
                 state_str = str(state)
 
@@ -39,7 +40,6 @@ class IterativeDFS(SearchAlgorithm):
                 # if depth >= cur_iteration_depth: 
                 #     continue
 
-                self.number_of_nodes_expanded += 1
                 for child, dir in reversed(self.state_handler.get_children(state_str)):
                     if (child not in depths or depths[child] > cur_depth + 1) and cur_depth < cur_iteration_depth:
                         frontier.append((cur_depth+1, child))
