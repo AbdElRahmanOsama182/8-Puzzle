@@ -1,5 +1,6 @@
 from algorithms.search_algorithm import SearchAlgorithm
 from collections import deque
+import time
 
 class BFS(SearchAlgorithm):
     def __init__(self, goal_state:str="123456789"):
@@ -17,8 +18,8 @@ class BFS(SearchAlgorithm):
         self.search_depth = 0
         self.number_of_nodes_expanded = 0
         
-        # frontier_max_size = 0
-
+        frontier_max_size = 0
+        start_time=time.time()
         while frontier:
             # frontier_max_size = max(frontier_max_size, len(frontier))
 
@@ -30,16 +31,18 @@ class BFS(SearchAlgorithm):
                 self.number_of_nodes_expanded += 1
                
                 if self.is_goal(state_str):
+                    self.running_time=time.time()-start_time   
                     self.rebuild_path(parent)
                     # print("frontier_max_size:", frontier_max_size)
                     return True
 
-                for child, dir in self.state_handler.get_children(state_str):
+                for child in self.state_handler.get_children(state_str):
                     if not visited.get(child, False):
                         frontier.append(child)
-                        parent[child] = (state, dir)
+                        parent[child] = state
                         visited[child] = True
             self.search_depth += 1
         self.search_depth -= 1 # root is at zero depth
+        self.running_time=time.time()-start_time   
         return False
             

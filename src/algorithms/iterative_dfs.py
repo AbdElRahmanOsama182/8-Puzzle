@@ -1,5 +1,6 @@
 from algorithms.search_algorithm import SearchAlgorithm
 from collections import deque
+import time
 
 class IterativeDFS(SearchAlgorithm):
     def __init__(self, goal_state):
@@ -36,6 +37,7 @@ class IterativeDFS(SearchAlgorithm):
                 state_str = str(state)
 
                 if self.is_goal(state_str):
+                    self.running_time=time.time()-start_time
                     self.rebuild_path(parent)
                     self.search_depth = cur_depth
                     # print("frontier_max_size:", frontier_max_size)
@@ -53,5 +55,5 @@ class IterativeDFS(SearchAlgorithm):
                         depths[child] = cur_depth + 1
                         
             cur_iteration_depth += 1
-       
+        self.running_time=time.time()-start_time
         return False  
