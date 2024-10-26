@@ -48,7 +48,8 @@ if "results" not in st.session_state:
         "runtime_duration": "",
         "nodes_expanded": "",
         "search_depth": "",
-        "path_cost": ""
+        "path_cost": "",
+        "path_to_goal": ""
     }
 _,input_col, puzzle_col, output_col,_ = st.columns([4, 6, 9, 6, 4]) 
 
@@ -86,7 +87,8 @@ with input_col:
                 "runtime_duration": str(round(results.runtime_duration, 2)) + " sec",
                 "nodes_expanded": results.nodes_expanded,
                 "search_depth": results.search_depth,
-                "path_cost": results.path_cost
+                "path_cost": results.path_cost,
+                "path_to_goal": ''.join(results.path_to_goal)
             }
             st.session_state.solution_path = results.path_to_goal
             st.session_state.path_index = 0
@@ -104,13 +106,15 @@ with output_col:
                 <p><strong>Nodes Expanded</strong>: {}</p>
                 <p><strong>Search Depth</strong>: {}</p>
                 <p><strong>Path Cost</strong>: {}</p>
+                <p><strong>Path To Goal</strong>: {}</p>
             </div>
             """.format(
                 st.session_state.results["success"],
                 st.session_state.results["runtime_duration"],
                 st.session_state.results["nodes_expanded"],
                 st.session_state.results["search_depth"],
-                st.session_state.results["path_cost"]
+                st.session_state.results["path_cost"],
+                st.session_state.results["path_to_goal"]
             ),
             unsafe_allow_html=True
         )
