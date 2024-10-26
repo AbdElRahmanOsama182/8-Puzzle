@@ -23,8 +23,6 @@ class DFS(SearchAlgorithm):
             explored.add(state)
             self.number_of_nodes_expanded += 1
 
-            self.search_depth = max(self.search_depth, depth)
-
             state_str = str(state)
             if self.is_goal(state_str):
                 self.rebuild_path(parent)
@@ -40,5 +38,7 @@ class DFS(SearchAlgorithm):
             for child, dir in reversed(self.state_handler.get_children(state_str)):
                 if child not in explored and child not in parent: # parent map chechking if the child is already in the frontier
                     frontier.append((depth+1, child))
-                    parent[child] = (state, dir)          
+                    parent[child] = (state, dir)
+                    self.search_depth = max(self.search_depth, depth+1)
+          
         return False
