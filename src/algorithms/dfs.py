@@ -23,7 +23,8 @@ class DFS(SearchAlgorithm):
             depth, state = frontier.pop()
             explored.add(state)
             self.number_of_nodes_expanded += 1
-
+            self.search_depth = max(self.search_depth, depth) 
+            
             state_str = str(state)
             if self.is_goal(state_str):
                 self.running_time=time.time()-start_time
@@ -37,9 +38,10 @@ class DFS(SearchAlgorithm):
             # if (not self.state_handler.is_solvable(state_str)):
             #     continue  
 
-            for child, dir in reversed(self.state_handler.get_children(state_str)):
+            for child in reversed(self.state_handler.get_children(state_str)):
                 if child not in explored and child not in parent: # parent map chechking if the child is already in the frontier
                     frontier.append((depth+1, child))
-                    parent[child] = state     
+                    parent[child] = state 
+                       
         self.running_time=time.time()-start_time   
         return False
