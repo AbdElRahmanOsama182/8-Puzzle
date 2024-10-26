@@ -1,7 +1,7 @@
 from algorithms.search_algorithm import SearchAlgorithm
 from heuristics.heuristic import Heuristic
 from puzzle.state_handler import StateHandler
-import queue
+import heapq
 import time
 
 class AStar(SearchAlgorithm):
@@ -9,11 +9,10 @@ class AStar(SearchAlgorithm):
         self.heuristic = heuristic
         super().__init__(goal_state)
     def search(self, state:str):
-        # print(state)
         state = int(state)
-        frontier = queue.PriorityQueue()
+        frontier = []
         explored = set()
-        frontier.put((0, state))
+        heapq.heappush(frontier, (0, state))
         parent = {}
         parent[state] = -1
         cost = {}
@@ -24,8 +23,8 @@ class AStar(SearchAlgorithm):
         self.states_to_goal = []
 
         start_time = time.time()
-        while not frontier.empty():
-            _, state = frontier.get()
+        while frontier:
+            _, state = heapq.heappop(frontier)
             state_str = str(state)
             if self.is_goal(state_str):
                 self.running_time=time.time()-start_time   
@@ -42,7 +41,7 @@ class AStar(SearchAlgorithm):
                     if child not in cost or new_cost < cost[child]:
                         cost[child] = new_cost
                         priority = new_cost + self.heuristic.heuristic(str(child), self.goal_state)
-                        frontier.put((priority, child))
+                        heapq.heappush(frontier, (priority, child))
                         parent[child] = state
         self.running_time=time.time()-start_time   
         return False
