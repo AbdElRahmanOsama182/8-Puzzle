@@ -12,6 +12,7 @@ class DFS(SearchAlgorithm):
         frontier.append((0, state))
         parent = {}
         parent[state] = -1
+        
         self.number_of_nodes_expanded = 0
         self.search_depth = 0
         self.path_to_goal = []
