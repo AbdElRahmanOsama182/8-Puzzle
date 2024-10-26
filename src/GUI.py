@@ -107,18 +107,27 @@ with input_col:
 
 with output_col:
     if "results" in st.session_state:
+        success = st.session_state.results["success"]
+        success_msg = ""
+        if success == "":
+            success_msg = "<span style='color: orange;'>Pending user input...</span>"
+        elif success == "True":
+            success_msg = "<span style='color: green;'>Solution exists! 😄</span>"
+        else:
+            success_msg = "<span style='color: red;'>Solution doesn't exist! 😢</span>"
+
         output_col.markdown(
             """
             <div style='border-radius: 8px; padding: 20px;height:340px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);'>
                 <h3 style='color: #4A90E2;'>Results</h3>
-                <p><strong>Success</strong>: {}</p>
+                <p><strong>{}</strong></p>
                 <p><strong>Runtime Duration</strong>: {}</p>
                 <p><strong>Nodes Expanded</strong>: {}</p>
                 <p><strong>Search Depth</strong>: {}</p>
                 <p><strong>Path Cost</strong>: {}</p>
             </div>
             """.format(
-                st.session_state.results["success"],
+                success_msg,
                 st.session_state.results["runtime_duration"],
                 st.session_state.results["nodes_expanded"],
                 st.session_state.results["search_depth"],

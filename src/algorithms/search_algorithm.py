@@ -22,6 +22,7 @@ class SearchAlgorithm:
             # the direction
             self.path_to_goal.append(self.state_handler.get_transition(str(parent[curr]), str(curr)))
             curr = parent[curr]
+            
         self.states_to_goal.append(curr)
         self.path_to_goal.reverse()
         self.states_to_goal.reverse()

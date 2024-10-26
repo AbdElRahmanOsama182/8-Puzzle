@@ -17,7 +17,8 @@ class BFS(SearchAlgorithm):
 
         self.search_depth = 0
         self.number_of_nodes_expanded = 0
-        
+        self.path_to_goal = []
+        self.states_to_goal = []
         frontier_max_size = 0
         start_time=time.time()
         while frontier:
