@@ -7,7 +7,7 @@ class IterativeDFS(SearchAlgorithm):
 
     def search(self, initial_state):
         cur_iteration_depth = 0
-        frontier_max_size = 0
+        # frontier_max_size = 0
         self.search_depth = 0
         self.path_to_goal = []
         self.states_to_goal = []
@@ -24,7 +24,7 @@ class IterativeDFS(SearchAlgorithm):
             depths[state] = 0
 
             while frontier:
-                frontier_max_size = max(frontier_max_size, len(frontier))
+                # frontier_max_size = max(frontier_max_size, len(frontier))
                 cur_depth, state = frontier.pop()
 
                 state_str = str(state)
@@ -32,7 +32,7 @@ class IterativeDFS(SearchAlgorithm):
                 if self.is_goal(state_str):
                     self.rebuild_path(parent)
                     self.search_depth = cur_depth
-                    print("frontier_max_size:", frontier_max_size)
+                    # print("frontier_max_size:", frontier_max_size)
                     # print("number_of_nodes_expanded"+self.number_of_nodes_expanded)
                     return True
                 

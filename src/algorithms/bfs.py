@@ -17,10 +17,10 @@ class BFS(SearchAlgorithm):
         self.search_depth = 0
         self.number_of_nodes_expanded = 0
         
-        frontier_max_size = 0
+        # frontier_max_size = 0
 
         while frontier:
-            frontier_max_size = max(frontier_max_size, len(frontier))
+            # frontier_max_size = max(frontier_max_size, len(frontier))
 
             level_size = len(frontier)
             for i in range(level_size):
@@ -31,7 +31,7 @@ class BFS(SearchAlgorithm):
                
                 if self.is_goal(state_str):
                     self.rebuild_path(parent)
-                    print("frontier_max_size:", frontier_max_size)
+                    # print("frontier_max_size:", frontier_max_size)
                     return True
 
                 for child, dir in self.state_handler.get_children(state_str):
