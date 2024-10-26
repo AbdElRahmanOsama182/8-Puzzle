@@ -16,7 +16,7 @@ class IterativeDFS(SearchAlgorithm):
         frontier = deque()
         # parent = {}
        
-
+        start_time=time.time()
         while True:
             state = int(initial_state)
             # frontier.append((0, state))
