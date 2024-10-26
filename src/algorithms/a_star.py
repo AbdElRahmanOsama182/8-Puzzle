@@ -33,12 +33,12 @@ class AStar(SearchAlgorithm):
                 continue
             explored.add(state)
             self.number_of_nodes_expanded += 1
-            for child, dir in self.state_handler.get_children(state_str):
+            for child in self.state_handler.get_children(state_str):
                 if child not in explored:
                     new_cost = cost[state] + 1
                     if child not in cost or new_cost < cost[child]:
                         cost[child] = new_cost
                         priority = new_cost + self.heuristic.heuristic(str(child), self.goal_state)
                         frontier.put((priority, child))
-                        parent[child] = (state, dir)
+                        parent[child] = state
         return False

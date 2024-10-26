@@ -32,11 +32,11 @@ class DFS(SearchAlgorithm):
                 continue
             explored.add(state)
             self.number_of_nodes_expanded += 1
-            for child, dir in reversed(self.state_handler.get_children(state_str)):
+            for child in reversed(self.state_handler.get_children(state_str)):
                 if child not in explored and child not in parent:#parent list as the frontier
                     # new_cost = cost[state] + 1
                     # if child not in cost or new_cost < cost[child]:
                     #     cost[child] = new_cost
                     frontier.append((depth+1, child))
-                    parent[child] = (state, dir)          
+                    parent[child] = state        
         return False

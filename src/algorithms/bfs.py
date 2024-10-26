@@ -34,10 +34,10 @@ class BFS(SearchAlgorithm):
                     print("frontier_max_size:", frontier_max_size)
                     return True
 
-                for child, dir in self.state_handler.get_children(state_str):
+                for child in self.state_handler.get_children(state_str):
                     if not visited.get(child, False):
                         frontier.append(child)
-                        parent[child] = (state, dir)
+                        parent[child] = state
                         visited[child] = True
             self.search_depth += 1
         self.search_depth -= 1 # root is at zero depth

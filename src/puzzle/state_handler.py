@@ -11,16 +11,16 @@ class StateHandler:
         children = []
         child = self.go_up(state)
         if child:
-            children.append((int(child), 'U'))
+            children.append(int(child))
         child = self.go_right(state)
         if child:
-            children.append((int(child), 'R'))
+            children.append(int(child))
         child = self.go_down(state)
         if child:
-            children.append((int(child), 'D'))
+            children.append(int(child))
         child = self.go_left(state)
         if child:
-            children.append((int(child), 'L'))
+            children.append(int(child))
         return children
     
     def go_up(self, state:str):
@@ -50,6 +50,16 @@ class StateHandler:
             return self.swap(state, one_pos, one_pos+1)
         else:
             return None
+
+    def get_transition(self, from_value:str, to_value:str):
+        if self.go_right(from_value)==to_value:
+            return 'R'
+        elif self.go_left(from_value) == to_value:
+            return 'L'
+        elif self.go_up(from_value) == to_value:
+            return 'U'
+        elif self.go_down(from_value) == to_value:
+            return 'D'
 
     def swap(self, state: str, pos1: int, pos2: int):
         state_list = list(state)
