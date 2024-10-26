@@ -60,7 +60,8 @@ with input_col:
     else:
         initial_state = st.session_state.get("initial_state", "410263758")  
 
-    st.text_input("Enter initial state", initial_state, key="initial_state")
+    st.text_input("Enter initial state, from top-left to right-bottom, 10 characters, e.g. \"012345678\"", initial_state, key="initial_state",
+                  placeholder="012345678")
     goal_state = st.text_input("Enter goal state", "123456789")
 
     method = st.selectbox("Choose Algorithim", [
