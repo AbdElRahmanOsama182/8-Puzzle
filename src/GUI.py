@@ -111,7 +111,7 @@ with output_col:
         success_msg = ""
         if success == "":
             success_msg = "<span style='color: orange;'>Pending user input...</span>"
-        elif success == "True":
+        elif success == True:
             success_msg = "<span style='color: green;'>Solution exists! 😄</span>"
         else:
             success_msg = "<span style='color: red;'>Solution doesn't exist! 😢</span>"
