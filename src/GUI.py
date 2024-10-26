@@ -60,9 +60,9 @@ with input_col:
     else:
         initial_state = st.session_state.get("initial_state", "410263758")  
 
-    st.text_input("Enter initial state, from top-left to right-bottom, 10 characters, e.g. \"012345678\"", initial_state, key="initial_state",
-                  placeholder="012345678")
-    goal_state = st.text_input("Enter goal state", "012345678")
+    DEFAULT_GOAL_STATE="012345678"
+    st.text_input("Enter initial state, from top-left to right-bottom, 10 characters, e.g. \"012345678\"", initial_state, key="initial_state")
+    goal_state = st.text_input("Enter goal state", DEFAULT_GOAL_STATE)
 
     method = st.selectbox("Choose Algorithm", [
         "BFS", 
@@ -73,7 +73,7 @@ with input_col:
     ])
 
     if st.button("Solve Puzzle", key="solve"):
-        if ''.join(sorted(initial_state)) == "012345678":
+        if ''.join(sorted(initial_state)) == DEFAULT_GOAL_STATE and ''.join(sorted(goal_state)) == DEFAULT_GOAL_STATE:
             heuristic = None
             if "A*" in method:  
                 heuristic = "euclidean" if "Euclidean" in method else "manhattan"
