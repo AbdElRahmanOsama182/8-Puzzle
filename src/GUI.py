@@ -48,8 +48,11 @@ def update_board():
         st.session_state.current_board = list(st.session_state.initial_state)
 
 def valid_goal():
-    if ''.join(sorted(goal_state)) != "012345678":
+    if ''.join(sorted(goal_state)) != "012345678" or ''.join(sorted(st.session_state.goal_state)) != "012345678":
+        print("Invalid goal state. Resetting to default.")
         st.session_state.goal_state = "012345678"
+    # else:
+    #     st.session_state.goal_state = goal_state
 
 st.set_page_config(page_title="8-Puzzle Solver", layout="wide", page_icon="🧩")
 st.title("8-Puzzle Solver")
@@ -71,8 +74,8 @@ with input_col:
     else:
         initial_state = st.session_state.get("initial_state", "410263758")  
 
-    goal_state = "012345678"
-    st.session_state.goal_state = goal_state
+    goal_state = st.session_state.get("goal_state", "012345678")
+    # st.session_state.goal_state = goal_state
     st.text_input("Enter initial state, from top-left to right-bottom, 10 characters, e.g. \"012345678\"", initial_state, key="initial_state", on_change=update_board)
     st.text_input("Enter goal state", goal_state, key="goal_state", on_change=valid_goal)
 
@@ -112,9 +115,9 @@ with output_col:
         if success == "":
             success_msg = "<span style='color: orange;'>Pending user input...</span>"
         elif success == True:
-            success_msg = "<span style='color: green;'>Solution exists! 😄</span>"
+            success_msg = "<span style='color: green; font-size: 1.5em;'>Solution exists! 😄</span>"
         else:
-            success_msg = "<span style='color: red;'>Solution doesn't exist! 😢</span>"
+            success_msg = "<span style='color: red; font-size: 1.1em;'>Solution doesn't exist! 😢</span>"
 
         output_col.markdown(
             """
