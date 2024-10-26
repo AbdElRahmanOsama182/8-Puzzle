@@ -30,7 +30,7 @@ class BFS(SearchAlgorithm):
                 state_str = str(state)
 
                 self.number_of_nodes_expanded += 1
-               
+            
                 if self.is_goal(state_str):
                     self.running_time=time.time()-start_time   
                     self.rebuild_path(parent)
