@@ -84,15 +84,22 @@ with input_col:
         "DFS", 
         "IDDFS", 
         "A* (Euclidean)", 
-        "A* (Manhattan)"
+        "A* (Manhattan)",
+        "A* (Linear Conflict)",
+        "Greedy BFS (Euclidean)",
+        "Greedy BFS (Manhattan)",
+        "Greedy BFS (Linear Conflict)"
     ])
 
     if st.button("Solve Puzzle", key="solve"):
         # if ''.join(sorted(initial_state)) == goal_state and ''.join(sorted(goal_state)) == goal_state:
         heuristic = None
         if "A*" in method:  
-            heuristic = "euclidean" if "Euclidean" in method else "manhattan"
+            heuristic = "euclidean" if "Euclidean" in method else "manhattan" if "Manhattan" in method else "linear_conflict"
             method = "A*"
+        elif "Greedy" in method:
+            heuristic = "euclidean" if "Euclidean" in method else "manhattan" if "Manhattan" in method else "linear_conflict"
+            method = "gbfs"
         game = PuzzleBoard(initial_state, method.lower(), heuristic, goal_state)
         results: SearchResult = game.solve()
 
