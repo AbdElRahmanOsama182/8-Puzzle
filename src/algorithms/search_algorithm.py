@@ -7,6 +7,7 @@ class SearchAlgorithm:
         self.search_depth = 0
         self.path_to_goal = [] # list of U, D, L, R characters representing directions
         self.states_to_goal = [] # list of integers representing states
+        self.running_time = 0.0
 
     def search(self, state:str):
         pass
@@ -39,3 +40,6 @@ class SearchAlgorithm:
 
     def get_search_depth(self):
         return self.search_depth
+    
+    def get_running_time(self):
+        return self.running_time

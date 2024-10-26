@@ -2,6 +2,7 @@ from algorithms.search_algorithm import SearchAlgorithm
 from heuristics.heuristic import Heuristic
 from puzzle.state_handler import StateHandler
 import queue
+import time
 
 class AStar(SearchAlgorithm):
     def __init__(self, goal_state, heuristic:Heuristic):
@@ -22,10 +23,12 @@ class AStar(SearchAlgorithm):
         self.path_to_goal = []
         self.states_to_goal = []
 
+        start_time = time.time()
         while not frontier.empty():
             _, state = frontier.get()
             state_str = str(state)
             if self.is_goal(state_str):
+                self.running_time=time.time()-start_time   
                 self.rebuild_path(parent)
                 self.search_depth = cost[state]
                 return True
@@ -41,4 +44,5 @@ class AStar(SearchAlgorithm):
                         priority = new_cost + self.heuristic.heuristic(str(child), self.goal_state)
                         frontier.put((priority, child))
                         parent[child] = state
+        self.running_time=time.time()-start_time   
         return False
