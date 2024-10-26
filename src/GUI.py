@@ -67,7 +67,7 @@ with input_col:
     method = st.selectbox("Choose Algorithm", [
         "BFS", 
         "DFS", 
-        "IDS", 
+        "IDDFS", 
         "A* (Euclidean)", 
         "A* (Manhattan)"
     ])
