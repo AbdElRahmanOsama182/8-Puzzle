@@ -12,7 +12,7 @@ class DFS(SearchAlgorithm):
         frontier.append((0, state))
         parent = {}
         parent[state] = -1
-        
+
         self.number_of_nodes_expanded = 0
         self.search_depth = 0
         self.path_to_goal = []
@@ -20,6 +20,9 @@ class DFS(SearchAlgorithm):
 
         while frontier:
             depth, state = frontier.pop()
+            explored.add(state)
+            self.number_of_nodes_expanded += 1
+
             self.search_depth = max(self.search_depth, depth)
 
             state_str = str(state)
@@ -30,8 +33,6 @@ class DFS(SearchAlgorithm):
             # if state in explored:
             #     continue
             
-            explored.add(state)
-            self.number_of_nodes_expanded += 1
 
             # if (not self.state_handler.is_solvable(state_str)):
             #     continue  
