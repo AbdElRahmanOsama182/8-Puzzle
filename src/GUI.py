@@ -62,9 +62,9 @@ with input_col:
 
     st.text_input("Enter initial state, from top-left to right-bottom, 10 characters, e.g. \"012345678\"", initial_state, key="initial_state",
                   placeholder="012345678")
-    goal_state = st.text_input("Enter goal state", "123456789")
+    goal_state = st.text_input("Enter goal state", "012345678")
 
-    method = st.selectbox("Choose Algorithim", [
+    method = st.selectbox("Choose Algorithm", [
         "BFS", 
         "DFS", 
         "IDS", 

@@ -7,16 +7,19 @@ import time
 
 class PuzzleBoard:
     def __init__(self, state:str, algorithm_name:str, heuristic_name:str=None
-                 , goal_state:str="123456789"):
+                 , goal_state:str="012345678"):
         self.state=state
+        self.goal_state=goal_state
         heuristic = None
         algorithm_factory=AlgorithmsFactory()
         if heuristic_name is not None:
             heuristic_factory = HeuristicsFactory()
             heuristic=heuristic_factory.get_heuristics(heuristic_name)
-        self.algorithm = algorithm_factory.get_algorithm(algorithm_name, heuristic, goal_state)
-        self.state_handler = StateHandler(goal_state)
+        self.state_handler = StateHandler(self.goal_state)
         self.state = self.state_handler.increment_state(state)
+        self.goal_state = self.state_handler.increment_state(self.goal_state)
+        self.state_handler.set_goal_state(self.goal_state) # after incrementing
+        self.algorithm = algorithm_factory.get_algorithm(algorithm_name, heuristic, self.goal_state)
 
     def solve(self):
         start_time = time.time()
