@@ -73,30 +73,31 @@ with input_col:
     ])
 
     if st.button("Solve Puzzle", key="solve"):
-        heuristic = None
-        if "A*" in method:  
-            heuristic = "euclidean" if "Euclidean" in method else "manhattan"
+        if ''.join(sorted(initial_state)) == "012345678":
+            heuristic = None
+            if "A*" in method:  
+                heuristic = "euclidean" if "Euclidean" in method else "manhattan"
 
-        game = PuzzleBoard(initial_state, method.lower(), heuristic, goal_state)
-        results: SearchResult = game.solve()
+            game = PuzzleBoard(initial_state, method.lower(), heuristic, goal_state)
+            results: SearchResult = game.solve()
 
-        st.session_state.results = {
-            "success": results.success,
-            "runtime_duration": str(round(results.runtime_duration, 2)) + " sec",
-            "nodes_expanded": results.nodes_expanded,
-            "search_depth": results.search_depth,
-            "path_cost": results.path_cost
-        }
-        st.session_state.solution_path = results.path_to_goal
-        st.session_state.path_index = 0
-        st.session_state.current_board = list(initial_state)  
-        st.session_state.animate = True  
+            st.session_state.results = {
+                "success": results.success,
+                "runtime_duration": str(round(results.runtime_duration, 2)) + " sec",
+                "nodes_expanded": results.nodes_expanded,
+                "search_depth": results.search_depth,
+                "path_cost": results.path_cost
+            }
+            st.session_state.solution_path = results.path_to_goal
+            st.session_state.path_index = 0
+            st.session_state.current_board = list(initial_state)  
+            st.session_state.animate = True  
 
 with output_col:
     if "results" in st.session_state:
         output_col.markdown(
             """
-            <div style='background-color: #ffffff; border-radius: 8px; padding: 20px;height:340px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);'>
+            <div style='border-radius: 8px; padding: 20px;height:340px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);'>
                 <h3 style='color: #4A90E2;'>Results</h3>
                 <p><strong>Success</strong>: {}</p>
                 <p><strong>Runtime Duration</strong>: {}</p>
