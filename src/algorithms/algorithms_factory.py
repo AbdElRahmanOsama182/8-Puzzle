@@ -5,17 +5,18 @@ from algorithms.a_star import AStar
 from heuristics.heuristic import Heuristic
 
 class AlgorithmsFactory:
-    def get_algorithm(self, algorithm_name, heuristic:Heuristic = None):
+    def get_algorithm(self, algorithm_name, heuristic:Heuristic = None
+                        , goal_state="123456789"):
         if algorithm_name == "bfs":
-            return BFS()
+            return BFS(goal_state)
         elif algorithm_name == "dfs":
-            return DFS()
-        elif algorithm_name == "iterative_dfs":
-            return IterativeDFS()
-        elif algorithm_name == "a_star":
-            return AStar(heuristic=heuristic)
+            return DFS(goal_state)
+        elif algorithm_name == "iddfs":
+            return IterativeDFS(goal_state)
+        elif algorithm_name == "a*":
+            return AStar(goal_state=goal_state,heuristic=heuristic)
         else:
             # let default be BFS
-            return BFS()
+            return BFS(goal_state)
             
 

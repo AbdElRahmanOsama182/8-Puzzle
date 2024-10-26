@@ -5,5 +5,5 @@ class Heuristic:
         self.board_dim = board_dim
     
     @abstractmethod
-    def heuristic(self, state, goal_state):
+    def heuristic(self, state:str, goal_state):
         pass
