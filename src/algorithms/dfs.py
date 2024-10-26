@@ -1,5 +1,6 @@
 from algorithms.search_algorithm import SearchAlgorithm
 from collections import deque
+import time
 
 class DFS(SearchAlgorithm):
     def __init__(self, goal_state):
@@ -18,12 +19,14 @@ class DFS(SearchAlgorithm):
         self.path_to_goal = []
         self.states_to_goal = []
 
+        start_time=time.time()
         while frontier:
             depth, state = frontier.pop()
             self.search_depth = max(self.search_depth, depth)
 
             state_str = str(state)
             if self.is_goal(state_str):
+                self.running_time=time.time()-start_time
                 self.rebuild_path(parent)
                 # self.search_depth = cost[state]
                 # self.path_cost = depth
@@ -32,11 +35,12 @@ class DFS(SearchAlgorithm):
                 continue
             explored.add(state)
             self.number_of_nodes_expanded += 1
-            for child, dir in reversed(self.state_handler.get_children(state_str)):
+            for child in reversed(self.state_handler.get_children(state_str)):
                 if child not in explored and child not in parent:#parent list as the frontier
                     # new_cost = cost[state] + 1
                     # if child not in cost or new_cost < cost[child]:
                     #     cost[child] = new_cost
                     frontier.append((depth+1, child))
-                    parent[child] = (state, dir)          
+                    parent[child] = state     
+        self.running_time=time.time()-start_time   
         return False

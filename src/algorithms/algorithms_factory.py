@@ -6,14 +6,14 @@ from heuristics.heuristic import Heuristic
 
 class AlgorithmsFactory:
     def get_algorithm(self, algorithm_name, heuristic:Heuristic = None
-                      , goal_state="123456789"):
+                        , goal_state="123456789"):
         if algorithm_name == "bfs":
             return BFS(goal_state)
         elif algorithm_name == "dfs":
             return DFS(goal_state)
-        elif algorithm_name == "iterative_dfs":
+        elif algorithm_name == "iddfs":
             return IterativeDFS(goal_state)
-        elif algorithm_name == "a_star":
+        elif algorithm_name == "a*":
             return AStar(goal_state=goal_state,heuristic=heuristic)
         else:
             # let default be BFS
