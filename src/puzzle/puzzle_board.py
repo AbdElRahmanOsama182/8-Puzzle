@@ -25,6 +25,7 @@ class PuzzleBoard:
             success = self.algorithm.search(self.state)
         else:
             success = False
+        print("Path to goal: " + ''.join(self.algorithm.get_path_to_goal()))
         # We would want to get number of nodes expanded & path and states to goal &
         # & search depth & path to goal cost from algorithm class
         # and we should get the runtime duration for this function
