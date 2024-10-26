@@ -40,6 +40,17 @@ def reverse_move(move):
     """Reverse the move direction for backtracking."""
     return {'U': 'D', 'D': 'U', 'L': 'R', 'R': 'L'}.get(move, move)
 
+def update_board():
+    if ''.join(sorted(initial_state)) == "012345678" and ''.join(sorted(st.session_state.initial_state)) == "012345678":
+        st.session_state.current_board = list(st.session_state.initial_state)
+    else:
+        st.session_state.initial_state = generate_random_state()
+        st.session_state.current_board = list(st.session_state.initial_state)
+
+def valid_goal():
+    if ''.join(sorted(goal_state)) != "012345678":
+        st.session_state.goal_state = "012345678"
+
 st.set_page_config(page_title="8-Puzzle Solver", layout="wide", page_icon="🧩")
 st.title("8-Puzzle Solver")
 if "results" not in st.session_state:
@@ -60,9 +71,10 @@ with input_col:
     else:
         initial_state = st.session_state.get("initial_state", "410263758")  
 
-    DEFAULT_GOAL_STATE="012345678"
-    st.text_input("Enter initial state, from top-left to right-bottom, 10 characters, e.g. \"012345678\"", initial_state, key="initial_state")
-    goal_state = st.text_input("Enter goal state", DEFAULT_GOAL_STATE)
+    goal_state = "012345678"
+    st.session_state.goal_state = goal_state
+    st.text_input("Enter initial state, from top-left to right-bottom, 10 characters, e.g. \"012345678\"", initial_state, key="initial_state", on_change=update_board)
+    st.text_input("Enter goal state", goal_state, key="goal_state", on_change=valid_goal)
 
     method = st.selectbox("Choose Algorithm", [
         "BFS", 
@@ -73,25 +85,25 @@ with input_col:
     ])
 
     if st.button("Solve Puzzle", key="solve"):
-        if ''.join(sorted(initial_state)) == DEFAULT_GOAL_STATE and ''.join(sorted(goal_state)) == DEFAULT_GOAL_STATE:
-            heuristic = None
-            if "A*" in method:  
-                heuristic = "euclidean" if "Euclidean" in method else "manhattan"
-                method = "A*"
-            game = PuzzleBoard(initial_state, method.lower(), heuristic, goal_state)
-            results: SearchResult = game.solve()
+        # if ''.join(sorted(initial_state)) == goal_state and ''.join(sorted(goal_state)) == goal_state:
+        heuristic = None
+        if "A*" in method:  
+            heuristic = "euclidean" if "Euclidean" in method else "manhattan"
+            method = "A*"
+        game = PuzzleBoard(initial_state, method.lower(), heuristic, goal_state)
+        results: SearchResult = game.solve()
 
-            st.session_state.results = {
-                "success": results.success,
-                "runtime_duration": str(round(results.runtime_duration, 2)) + " sec",
-                "nodes_expanded": results.nodes_expanded,
-                "search_depth": results.search_depth,
-                "path_cost": results.path_cost
-            }
-            st.session_state.solution_path = results.path_to_goal
-            st.session_state.path_index = 0
-            st.session_state.current_board = list(initial_state)  
-            st.session_state.animate = True  
+        st.session_state.results = {
+            "success": results.success,
+            "runtime_duration": str(round(results.runtime_duration, 2)) + " sec",
+            "nodes_expanded": results.nodes_expanded,
+            "search_depth": results.search_depth,
+            "path_cost": results.path_cost
+        }
+        st.session_state.solution_path = results.path_to_goal
+        st.session_state.path_index = 0
+        st.session_state.current_board = list(initial_state)  
+        st.session_state.animate = True  
 
 with output_col:
     if "results" in st.session_state:
