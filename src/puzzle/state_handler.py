@@ -56,6 +56,9 @@ class StateHandler:
         state_list[pos1], state_list[pos2] = state_list[pos2], state_list[pos1]
         return ''.join(state_list)
     
+    def set_goal_state(self, goal_state:str):
+        self.goal_state = goal_state
+
     def count_inversions(self, state:str):
         inv_cnt = 0
         for i in range(len(state)-1):
