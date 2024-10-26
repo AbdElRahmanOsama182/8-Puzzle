@@ -8,7 +8,6 @@ class SearchAlgorithm:
         self.path_to_goal = [] # list of U, D, L, R characters representing directions
         self.states_to_goal = [] # list of integers representing states
         self.running_time = 0.0
-        self.running_time = 0.0
 
     def search(self, state:str):
         pass
@@ -23,9 +22,7 @@ class SearchAlgorithm:
             # the direction
             self.path_to_goal.append(self.state_handler.get_transition(str(parent[curr]), str(curr)))
             curr = parent[curr]
-            # the direction
-            self.path_to_goal.append(self.state_handler.get_transition(str(parent[curr]), str(curr)))
-            curr = parent[curr]
+            
         self.states_to_goal.append(curr)
         self.path_to_goal.reverse()
         self.states_to_goal.reverse()
