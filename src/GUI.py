@@ -77,7 +77,7 @@ with input_col:
             heuristic = None
             if "A*" in method:  
                 heuristic = "euclidean" if "Euclidean" in method else "manhattan"
-
+                method = "A*"
             game = PuzzleBoard(initial_state, method.lower(), heuristic, goal_state)
             results: SearchResult = game.solve()
 
