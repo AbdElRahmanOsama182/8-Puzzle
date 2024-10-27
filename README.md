@@ -2,7 +2,7 @@
 
 ## Overview
 
-we implemented search algorithms to solve the 8-puzzle problem. The 8-puzzle consists of a 3x3 board with 8 numbered tiles and one blank space (0). The objective is to arrange the tiles in ascending order, with the blank tile at the last position, by sliding tiles into the blank space. The program starts from an initial configuration and aims to reach the goal state.
+We implemented search algorithms to solve the 8-puzzle problem. The 8-puzzle consists of a 3x3 board with 8 numbered tiles and one blank space (0). The objective is to arrange the tiles in ascending order, with the blank tile at the last position, by sliding tiles into the blank space. The program starts from an initial configuration and aims to reach the goal state.
 
 ## **User Interface**
 

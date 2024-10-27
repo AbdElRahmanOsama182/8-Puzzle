@@ -124,7 +124,7 @@ with output_col:
         if success == "":
             success_msg = "<span style='color: orange;'>Pending user input...</span>"
         elif success == True:
-            success_msg = "<span style='color: green; font-size: 1.5em;'>Solution exists! 😄</span>"
+            success_msg = "<span style='color: green; font-size: 1.2em;'>Solution exists! 😄</span>"
         else:
             success_msg = "<span style='color: red; font-size: 1.1em;'>Solution doesn't exist! 😢</span>"
 
@@ -141,9 +141,9 @@ with output_col:
                 <p><strong>Nodes Expanded</strong>: {}</p>
                 <p><strong>Search Depth</strong>: {}</p>
                 <p><strong>Path Cost</strong>: {}</p>
-                <details style="margin-top: 10px;">
+                <details style="margin-top: 8px;">
                     <summary style=\'font-weight: bold; cursor: pointer;\'>Path to Goal:</summary>
-                        <ul style=\'padding-left: 20px;\'>
+                        <ul style=\'padding-left: 20px; overflow-y: auto; \'>
                             {}
                         </ul>
                 </details>
