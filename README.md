@@ -119,7 +119,7 @@ The user interface for the **8-Puzzle Solver** is designed with simplicity and f
     Overall, Linear Conflict is preferred when minimizing node expansions and cost, while Manhattan is optimal for quick runtimes.
     <table>
         <tr>
-            <td><img src="assets/Astar.png" alt="A* Heuristics"></td>
+            <td><img src="assets/AStar.png" alt="A* Heuristics"></td>
             <td><img src="assets/GBFS.png" alt="GBFS Heuristics"></td>
         </tr>
     </table>
@@ -141,8 +141,7 @@ The user interface for the **8-Puzzle Solver** is designed with simplicity and f
     ![Sample_run8.png](assets/SampleRun8.png)
     
 ## Deployment
-
-    You can access the deployed version of the 8-Puzzle Game Solver [here](https://8-puzzle.streamlit.app/).
+You can access the deployed version of the 8-Puzzle Game Solver [here](https://8-puzzle.streamlit.app/).
     
 ## **Contributors**
 
