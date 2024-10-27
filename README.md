@@ -140,7 +140,10 @@ The user interface for the **8-Puzzle Solver** is designed with simplicity and f
     ![Sample_run7.png](assets/SampleRun7.png)
     ![Sample_run8.png](assets/SampleRun8.png)
     
+## Deployment
 
+    You can access the deployed version of the 8-Puzzle Game Solver [here](https://8-puzzle.streamlit.app/).
+    
 ## **Contributors**
 
 - AbdElRahman Bassam
