@@ -26,15 +26,15 @@ class AStar(SearchAlgorithm):
         while frontier:
             _, state = heapq.heappop(frontier)
             state_str = str(state)
+            if state in explored:
+                continue
+            self.number_of_nodes_expanded += 1
             if self.is_goal(state_str):
                 self.running_time=time.time()-start_time   
                 self.rebuild_path(parent)
                 self.search_depth = cost[state]
                 return True
-            if state in explored:
-                continue
             explored.add(state)
-            self.number_of_nodes_expanded += 1
             for child in self.state_handler.get_children(state_str):
                 if child not in explored:
                     new_cost = cost[state] + 1
