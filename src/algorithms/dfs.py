@@ -30,13 +30,6 @@ class DFS(SearchAlgorithm):
                 self.running_time=time.time()-start_time
                 self.rebuild_path(parent)
                 return True
-            
-            # if state in explored:
-            #     continue
-            
-
-            # if (not self.state_handler.is_solvable(state_str)):
-            #     continue  
 
             for child in reversed(self.state_handler.get_children(state_str)):
                 if child not in explored and child not in parent: # parent map chechking if the child is already in the frontier
