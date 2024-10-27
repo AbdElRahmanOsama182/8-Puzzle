@@ -3,6 +3,7 @@ from heuristics.manhattan_distance import ManhattanDistance
 from heuristics.linear_conflict import LinearConflict
 
 class HeuristicsFactory:
+    # Factory class for creating heuristics
     def get_heuristics(self, heuristic_name):
         if heuristic_name == "euclidean":
             return EuclideanDistance()

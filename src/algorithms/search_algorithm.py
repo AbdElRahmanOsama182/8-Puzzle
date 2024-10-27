@@ -1,5 +1,6 @@
 from puzzle.state_handler import StateHandler
 class SearchAlgorithm:
+
     def __init__(self, goal_state:str="123456789"):
         self.goal_state= goal_state
         self.state_handler=StateHandler(goal_state)
@@ -16,6 +17,7 @@ class SearchAlgorithm:
         return state==self.goal_state
     
     def rebuild_path(self, parent:list):
+        # rebuild the path to the goal state from the parent dictionary
         curr = int(self.goal_state)
         while parent[curr] != -1:
             self.states_to_goal.append(curr) # the goal state

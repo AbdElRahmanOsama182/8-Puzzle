@@ -5,8 +5,9 @@ from puzzle.state_handler import StateHandler
 from puzzle.search_result import SearchResult
 
 class PuzzleBoard:
+
     def __init__(self, state:str, algorithm_name:str, heuristic_name:str=None
-                 , goal_state:str="012345678"):
+                    , goal_state:str="012345678"):
         self.state=state
         self.goal_state=goal_state
         heuristic = None
@@ -21,6 +22,7 @@ class PuzzleBoard:
         self.algorithm = algorithm_factory.get_algorithm(algorithm_name, heuristic, self.goal_state)
 
     def solve(self):
+        # check if the state is solvable before searching
         if self.state_handler.is_solvable(self.state):
             success = self.algorithm.search(self.state)
         else:

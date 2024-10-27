@@ -4,11 +4,15 @@ import random
 from puzzle.search_result import SearchResult
 from puzzle.puzzle_board import PuzzleBoard  
 
+# Helper functions
+
+# Generate a random initial state
 def generate_random_state():
     base_state = list("123456780")  
     random.shuffle(base_state)  
     return ''.join(base_state)
 
+# Convert board list to HTML/CSS grid layout
 def display_board_html(board):
     """Convert board list to HTML/CSS grid layout."""
     html = '<div class="puzzle-grid">'
@@ -18,6 +22,7 @@ def display_board_html(board):
     html += "</div>"
     return html
 
+# Apply a move to the board
 def apply_move(board, move):
     idx = board.index('0')
     row, col = divmod(idx, 3)
@@ -36,10 +41,12 @@ def apply_move(board, move):
     board[swap_idx], board[idx] = board[idx], board[swap_idx]
     return board
 
+# Reverse the move direction for moving backwards
 def reverse_move(move):
     """Reverse the move direction for backtracking."""
     return {'U': 'D', 'D': 'U', 'L': 'R', 'R': 'L'}.get(move, move)
 
+# Update the board based on the input
 def update_board():
     if ''.join(sorted(initial_state)) == "012345678" and ''.join(sorted(st.session_state.initial_state)) == "012345678":
         st.session_state.current_board = list(st.session_state.initial_state)
@@ -47,6 +54,7 @@ def update_board():
         st.session_state.initial_state = generate_random_state()
         st.session_state.current_board = list(st.session_state.initial_state)
 
+# check if the goal state is valid
 def valid_goal():
     if ''.join(sorted(goal_state)) != "012345678" or ''.join(sorted(st.session_state.goal_state)) != "012345678":
         print("Invalid goal state. Resetting to default.")
@@ -54,6 +62,7 @@ def valid_goal():
     # else:
     #     st.session_state.goal_state = goal_state
 
+# Streamlit UI Initialization
 st.set_page_config(page_title="8-Puzzle Solver", layout="wide", page_icon="🧩")
 st.title("8-Puzzle Solver")
 if "results" not in st.session_state:
@@ -65,8 +74,10 @@ if "results" not in st.session_state:
         "path_cost": "",
         "path_to_goal": ""
     }
+
 _,input_col, puzzle_col, output_col,_ = st.columns([4, 6, 9, 6, 4]) 
 
+# Input column for puzzle initial state, goal state, and algorithm selection
 with input_col:
     if st.button("Shuffle Puzzle", key="shuffle", help="Generate a new random puzzle!"):
         initial_state = generate_random_state()
@@ -92,7 +103,7 @@ with input_col:
         "Greedy BFS (Linear Conflict)"
     ])
 
-    if st.button("Solve Puzzle", key="solve"):
+    if st.button("Solve Puzzle", key="solve", help="Solve the puzzle!"):
         # if ''.join(sorted(initial_state)) == goal_state and ''.join(sorted(goal_state)) == goal_state:
         heuristic = None
         if "A*" in method:  
@@ -117,6 +128,7 @@ with input_col:
         st.session_state.current_board = list(initial_state)  
         st.session_state.animate = True  
 
+# Output column for displaying the results
 with output_col:
     if "results" in st.session_state:
         success = st.session_state.results["success"]
@@ -159,6 +171,7 @@ with output_col:
             unsafe_allow_html=True
         )
 
+# Puzzle column for displaying the puzzle board
 with puzzle_col:
     if "current_board" not in st.session_state:
         st.session_state.current_board = list(initial_state)  
@@ -175,6 +188,7 @@ with puzzle_col:
 
     _,prev, next = st.columns([2,5,5])
     
+    # Go to previous state
     with prev:
         if st.button("◀ Prev", key="prev", help="Go to previous move"):
             if st.session_state.path_index > 0:
@@ -185,6 +199,7 @@ with puzzle_col:
                 board_html = display_board_html(st.session_state.current_board)
                 board_placeholder.markdown(board_html, unsafe_allow_html=True)
 
+    # Go to next state
     with next:
         if st.button("Next ▶", key="next", help="Go to next move"):
             if st.session_state.path_index < len(st.session_state.solution_path):
@@ -194,6 +209,7 @@ with puzzle_col:
                 board_html = display_board_html(st.session_state.current_board)
                 board_placeholder.markdown(board_html, unsafe_allow_html=True)
 
+# CSS styling
 st.markdown("""
     <style>
     body {
@@ -240,6 +256,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Animate the solution path
 if "solution_path" in st.session_state and st.session_state.animate:
     while st.session_state.path_index < len(st.session_state.solution_path):
         move = st.session_state.solution_path[st.session_state.path_index]
