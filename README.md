@@ -135,6 +135,8 @@ You can access the deployed version of the 8-Puzzle Game Solver [here](https://8
 
 ## **Sample runs**
 
+https://github.com/user-attachments/assets/9785f5b5-da12-42ea-a4d8-e9d232762091
+
 ![Sample_run1.png](assets/SampleRun1.png)
 ![Sample_run2.png](assets/SampleRun2.png)
 ![Sample_run3.png](assets/SampleRun3.png)
@@ -143,8 +145,6 @@ You can access the deployed version of the 8-Puzzle Game Solver [here](https://8
 ![Sample_run6.png](assets/SampleRun6.png)
 ![Sample_run7.png](assets/SampleRun7.png)
 ![Sample_run8.png](assets/SampleRun8.png)
-
-https://github.com/user-attachments/assets/9785f5b5-da12-42ea-a4d8-e9d232762091
 
 ## **Contributors**
 
