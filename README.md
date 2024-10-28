@@ -130,7 +130,10 @@ The user interface for the **8-Puzzle Solver** is designed with simplicity and f
     2. **Euclidean Distance**: Admissible; measures straight-line distance without overestimation.
     3. **Linear Conflict**: Admissible; adds cost for conflicting tiles without exceeding the true cost.
     
-    # **Sample runs**
+## Deployment
+You can access the deployed version of the 8-Puzzle Game Solver [here](https://8-puzzle.streamlit.app/).
+
+## **Sample runs**
     ![Sample_run1.png](assets/SampleRun1.png)
     ![Sample_run2.png](assets/SampleRun2.png)
     ![Sample_run3.png](assets/SampleRun3.png)
@@ -139,9 +142,6 @@ The user interface for the **8-Puzzle Solver** is designed with simplicity and f
     ![Sample_run6.png](assets/SampleRun6.png)
     ![Sample_run7.png](assets/SampleRun7.png)
     ![Sample_run8.png](assets/SampleRun8.png)
-    
-## Deployment
-You can access the deployed version of the 8-Puzzle Game Solver [here](https://8-puzzle.streamlit.app/).
     
 ## **Contributors**
 
