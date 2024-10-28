@@ -6,6 +6,7 @@ from heuristics.heuristic import Heuristic
 from algorithms.greedy_bfs import GreedyBFS 
 
 class AlgorithmsFactory:
+    # Factory class for creating search algorithms
     def get_algorithm(self, algorithm_name, heuristic:Heuristic = None
                         , goal_state="123456789"):
         if algorithm_name == "bfs":
