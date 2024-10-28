@@ -134,14 +134,15 @@ The user interface for the **8-Puzzle Solver** is designed with simplicity and f
 You can access the deployed version of the 8-Puzzle Game Solver [here](https://8-puzzle.streamlit.app/).
 
 ## **Sample runs**
-    ![Sample_run1.png](assets/SampleRun1.png)
-    ![Sample_run2.png](assets/SampleRun2.png)
-    ![Sample_run3.png](assets/SampleRun3.png)
-    ![Sample_run4.png](assets/SampleRun4.png)
-    ![Sample_run5.png](assets/SampleRun5.png)
-    ![Sample_run6.png](assets/SampleRun6.png)
-    ![Sample_run7.png](assets/SampleRun7.png)
-    ![Sample_run8.png](assets/SampleRun8.png)
+
+![Sample_run1.png](assets/SampleRun1.png)
+![Sample_run2.png](assets/SampleRun2.png)
+![Sample_run3.png](assets/SampleRun3.png)
+![Sample_run4.png](assets/SampleRun4.png)
+![Sample_run5.png](assets/SampleRun5.png)
+![Sample_run6.png](assets/SampleRun6.png)
+![Sample_run7.png](assets/SampleRun7.png)
+![Sample_run8.png](assets/SampleRun8.png)
     
 ## **Contributors**
 
