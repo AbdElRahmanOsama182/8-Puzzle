@@ -267,6 +267,6 @@ if "solution_path" in st.session_state and st.session_state.animate:
         board_placeholder.markdown(board_html, unsafe_allow_html=True)
 
         st.session_state.path_index += 1
-        time.sleep(0.3) 
+        time.sleep(0.4) 
 
     st.session_state.animate = False  
