@@ -16,12 +16,14 @@ class SearchAlgorithm:
         return state==self.goal_state
     
     def rebuild_path(self, parent:list):
+        # rebuild the path to the goal state from the parent dictionary
         curr = int(self.goal_state)
         while parent[curr] != -1:
             self.states_to_goal.append(curr) # the goal state
             # the direction
             self.path_to_goal.append(self.state_handler.get_transition(str(parent[curr]), str(curr)))
             curr = parent[curr]
+            
         self.states_to_goal.append(curr)
         self.path_to_goal.reverse()
         self.states_to_goal.reverse()

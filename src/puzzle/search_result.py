@@ -17,6 +17,7 @@ class SearchResult:
         self.path_cost = path_cost
         self.states_to_goal = states_to_goal
 
+    # This method is used to print the object
     def __str__(self):
         return (f"SearchResult(\n"
                 f"  Success: {self.success}\n"

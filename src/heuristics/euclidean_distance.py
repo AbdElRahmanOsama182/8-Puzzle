@@ -10,7 +10,9 @@ class EuclideanDistance(Heuristic):
     def heuristic(self, state, goal_state):
         sum = 0
         for i in range(len(state)):
+            # get the x and y coordinates of the current state and the goal state
             x1, y1 = i // self.board_dim, i % self.board_dim
             x2, y2 = goal_state.index(state[i]) // self.board_dim, goal_state.index(state[i]) % self.board_dim
+            # calculate the euclidean distance between the current state and the goal state
             sum += self.euclidean_distance(x1, y1, x2, y2)
         return sum
