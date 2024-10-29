@@ -16,8 +16,11 @@ class IterativeDFS(SearchAlgorithm):
         self.number_of_nodes_expanded = 0
         frontier = deque()
         start_time=time.time()
-        # while True as the search will continue until the goal state is found & its guaranteed to be found
-        while True:
+
+        is_solvable = self.state_handler.is_solvable(initial_state)
+        # while is_solvable try to find the goal state with increasing depth
+        while is_solvable:
+            
             # initialize the frontier with the initial state
             state = int(initial_state)
             frontier.append(state)
