@@ -15,7 +15,8 @@ class LinearConflict(Heuristic):
             # get the tiles in the current row
             row_tiles = state[row * self.board_dim: row * self.board_dim + self.board_dim]
             # get the goal row indices of the tiles in the current row
-            goal_row_indices = [goal_state.index(tile) // self.board_dim for tile in row_tiles]
+            goal_row_indices = [goal_state.index(tile) // self.board_dim for tile in row_tiles if tile != '1']
+
 
             for i in range(len(goal_row_indices)):
                 for j in range(i + 1, len(goal_row_indices)):
@@ -29,7 +30,7 @@ class LinearConflict(Heuristic):
             # get the tiles in the current column
             col_tiles = state[col::self.board_dim]
             # get the goal column indices of the tiles in the current column
-            goal_col_indices = [goal_state.index(tile) % self.board_dim for tile in col_tiles]
+            goal_col_indices = [goal_state.index(tile) % self.board_dim for tile in col_tiles if tile != '1']
 
             for i in range(len(goal_col_indices)):
                 for j in range(i + 1, len(goal_col_indices)):
@@ -44,6 +45,8 @@ class LinearConflict(Heuristic):
 
         sum_manhattan = 0
         for i in range(len(state)):
+            if state[i] == '1':
+                continue
             # get the x and y coordinates of the current state and the goal state 
             x1, y1 = i // self.board_dim, i % self.board_dim
             x2, y2 = goal_state.index(state[i]) // self.board_dim, goal_state.index(state[i]) % self.board_dim
